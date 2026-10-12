@@ -38,17 +38,18 @@ C 类是这套方法的核心。实物外形、私有数据、原始文件、个
 
 本 skill 由 DSH 的 `dsh-skill-filesystem` 提供，它是一个本地发现 provider：扫描若干根目录，解析 `SKILL.md` 的 YAML frontmatter 生成目录条目，正文按需加载。
 
-用户级安装，全局可用：
+用户级安装，全局可用。把 `prompt-optimizer\` 整个目录复制过去：
 
 ```powershell
-.\tools\install.ps1
+# 仓库克隆到本地后，在仓库根目录执行
+Copy-Item .\prompt-optimizer "$env:DSH_HOME\skills\" -Recurse
 ```
 
-脚本把 `prompt-optimizer\` 复制到 `$env:DSH_HOME\skills\`，默认即 `~/.dsh/skills/`。
+`$env:DSH_HOME` 未设置时，目标目录是 `~/.dsh/skills/`。
 
 项目级安装，只对该项目生效：复制到 `<项目根>/.dsh/skills/`，项目根的判定依据是最近的 `.git` 祖先目录。
 
-手动安装等价于一次目录复制：
+装完的目录结构：
 
 ```text
 ~/.dsh/skills/prompt-optimizer/SKILL.md
